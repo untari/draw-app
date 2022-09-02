@@ -3,6 +3,13 @@
 var toolbox = null;
 var colourP = null;
 var helpers = null;
+var hexStamp;
+
+// function preload() {
+// 	stampOne = loadImage("assets/new/Dog2.png");
+// 	stampTwo = loadImage("assets/new/Cat2.png");
+// 	stampThree = loadImage("assets/new/Bunny2.png");
+// }
 
 function setup() {
 
@@ -10,7 +17,7 @@ function setup() {
 	canvasContainer = select('#content');
 	var c = createCanvas(canvasContainer.size().width, canvasContainer.size().height);
 	c.parent("content");
-
+	
 	//create helper functions and the colour palette
 	helpers = new HelperFunctions();
 	colourP = new ColourPalette();
@@ -21,12 +28,13 @@ function setup() {
 	//add the tools to the toolbox.
 	toolbox.addTool(new FreehandTool());
 	toolbox.addTool(new LineToTool());
-	toolbox.addTool(new mirrorDrawTool());
 	toolbox.addTool(new SprayCanTool());
 	toolbox.addTool(new StampTool());
+	toolbox.addTool(new mirrorDrawTool());
+	toolbox.addTool(new EditableShapeTool());
 	toolbox.addTool(new EraserTool());
-	background(255);
-
+	
+	background(255);	
 }
 
 function draw() {
@@ -39,4 +47,36 @@ function draw() {
 	} else {
 		alert("it doesn't look like your tool has a draw method!");
 	}
+	
+}
+
+//Needed for various keypressed functions
+function keyPressed(keyCode){
+    if (toolbox.selectedTool.hasOwnProperty("keyPressed")){
+        toolbox.selectedTool.keyPressed(keyCode)
+    }
+}
+
+function keyReleased(keyCode){
+    if (toolbox.selectedTool.hasOwnProperty("keyPressed")){
+        toolbox.selectedTool.keyReleased(keyCode)
+    }
+}
+
+function mousePressed(){
+    if (toolbox.selectedTool.hasOwnProperty("mousePressed")){
+        toolbox.selectedTool.mousePressed()
+    }
+}
+
+function mouseReleased(){
+    if (toolbox.selectedTool.hasOwnProperty("mouseReleased")){
+        toolbox.selectedTool.mouseReleased()
+    }
+}
+
+function mouseClicked(){
+    if (toolbox.selectedTool.hasOwnProperty("mouseClicked")){
+        toolbox.selectedTool.mouseClicked()
+    }
 }

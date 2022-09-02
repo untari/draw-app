@@ -18,7 +18,6 @@ function Toolbox() {
 
 		//call loadPixels to make sure most recent changes are saved to pixel array
 		loadPixels();
-
 	}
 
 	//add a new tool icon to the html page
@@ -28,8 +27,6 @@ function Toolbox() {
 		sideBarItem.id(name + "sideBarItem")
 		sideBarItem.parent('sidebar');
 		sideBarItem.mouseClicked(toolbarItemClick);
-
-
 	};
 
 	//add a tool to the tools array
@@ -67,7 +64,41 @@ function Toolbox() {
 				}
 			}
 		}
+
+		//If the highlighter tool is selected, change the colour to the colour with alpha value (colourPalette.colours[1])
+        if(toolName == "highlighter"){
+            colourP.highlighterSelect();
+        }
+        
+        //If the bucketFillTool is selected, change the colour to the rgba value (colourPalette.colours[2]])
+        else if(toolName == "bucketFillTool"){
+            colourP.floodFillSelect();
+        }
+        
+        //Otherwise use the general colour (colourPalette.colours[0])
+        else{
+            colourP.allToolCSelect()
+        }
 	};
+	this.selectTool = function(toolName) {
+		//search through the tools for one that's name matches
+		//toolName
+		for (var i = 0; i < this.tools.length; i++) {
+			if (this.tools[i].name == toolName) {
+				//if the tool has an unselectTool method run it.
+				if (this.selectedTool != null && this.selectedTool.hasOwnProperty(
+						"unselectTool")) {
+					this.selectedTool.unselectTool();
+				}
+				//select the tool and highlight it on the toolbar
+				this.selectedTool = this.tools[i];
+				select("#" + toolName + "sideBarItem").style("border", "2px solid blue");
 
-
+				//if the tool has an options area. Populate it now.
+				if (this.selectedTool.hasOwnProperty("populateOptions")) {
+					this.selectedTool.populateOptions();
+				}
+			}
+		}
+	};
 }

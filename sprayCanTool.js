@@ -1,5 +1,6 @@
 function SprayCanTool(){
-    
+    //set an icon and a name for the object
+    //also declare the points and spread
     this.name = "SprayCanTool";
     this.icon = "assets/sprayCan.jpg";
     

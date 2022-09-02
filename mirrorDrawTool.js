@@ -1,4 +1,5 @@
 function mirrorDrawTool() {
+	//set an icon and a name for the object
 	this.name = "mirrorDraw";
 	this.icon = "assets/mirrorDraw.jpg";
 
@@ -113,13 +114,13 @@ function mirrorDrawTool() {
 	this.unselectTool = function() {
 		updatePixels();
 		//clear options
-		select(".options").html("");
+		select("#sizeOfControl").html("");
 	};
 
 	//adds a button and click handler to the options area. When clicked
 	//toggle the line of symmetry between horizonatl to vertical
 	this.populateOptions = function() {
-		select(".options").html(
+		select("#sizeOfControl").html(
 			"<button id='directionButton'>Make Horizontal</button>");
 		// 	//click handler
 		select("#directionButton").mouseClicked(function() {

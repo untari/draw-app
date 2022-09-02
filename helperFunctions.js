@@ -1,5 +1,4 @@
 function HelperFunctions() {
-
 	//p5.dom click click events. Notice that there is no this. at the
 	//start we don't need to do that here because the event will
 	//be added to the button and doesn't 'belong' to the object
@@ -16,6 +15,19 @@ function HelperFunctions() {
 	//event handler for the save image button. saves the canvsa to the
 	//local file system.
 	select("#saveImageButton").mouseClicked(function() {
-		saveCanvas("myPicture", "jpg")
+		saveCanvas('myCanvas', 'jpg');
 	});
+
 }
+
+//make sure mouse is on canvas for links in Options and not have it draw on cavnas
+function mousePressedOnCanvas(){
+	if(mouseX > 0 && mouseY < (0 + width) && 
+	mouseY > 0 && mouseY < (0 + height) ){
+		return true;
+	}
+	return false;
+}
+
+
+

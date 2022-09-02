@@ -1,9 +1,7 @@
-//Here is a eraser function, the constructor will allows us to erase the drawing 
-
-function EraserTool() {
+function EraserTool(){
 	//set an icon and a name 
-    this.icon = "assets/eraser.jpg";
-    this.name = "eraserTool";
+	this.icon = "assets/eraser.jpg";
+	this.name = "eraserTool";
 	//initialize to false if it not selected
 	this.eraserSelected = false; 
 
@@ -25,7 +23,7 @@ function EraserTool() {
 			}
 		} 		
 	}
-	
+
 	//clear options
 	this.unselectTool = function() {
 		select("#sizeOfControl").html("");
@@ -39,6 +37,4 @@ function EraserTool() {
 		this.eraserSizeSlider = createSlider(10,150,10);
 		this.eraserSizeSlider.parent("#sizeOfControl");
 	};
-
-
 }
